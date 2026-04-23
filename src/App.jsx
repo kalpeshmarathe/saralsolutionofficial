@@ -1,25 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import TriplePillar from './components/TriplePillar';
-import About from './components/About';
-import SocialProof from './components/SocialProof';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Home from './pages/Home';
+import CoursesPage from './pages/CoursesPage';
+import DsaSheetPage from './pages/DsaSheetPage';
+import ContactPage from './pages/ContactPage';
+import LoginModal from './components/LoginModal';
 
 function App() {
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+
   return (
-    <div className="font-sans antialiased bg-dark text-slate-100 overflow-x-hidden">
-      <Navbar />
-      <main>
-        <Hero />
-        <TriplePillar />
-        <About />
-        <SocialProof />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className="app-root">
+        <Navbar onLoginClick={() => setIsLoginOpen(true)} />
+        
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/courses" element={<CoursesPage />} />
+          <Route path="/dsa-sheet" element={<DsaSheetPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
+
+        <Footer />
+
+        <LoginModal 
+          isOpen={isLoginOpen} 
+          onClose={() => setIsLoginOpen(false)} 
+        />
+      </div>
+    </Router>
   );
 }
 

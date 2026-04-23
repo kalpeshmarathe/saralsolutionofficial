@@ -1,149 +1,126 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, Clock, Code, ArrowRight, Zap, Target } from 'lucide-react';
-import { Link } from 'react-scroll';
+import { Star, Clock, Globe, ArrowRight, Code, ShieldCheck, Zap } from 'lucide-react';
+
+const courses = [
+  {
+    title: "Java Full Stack Development",
+    img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
+    duration: "6 Months | Full Mastery",
+    topics: ["Java 17+", "Spring Boot", "Microservices", "React", "AWS"],
+    oldPrice: "₹30,000",
+    newPrice: "₹15,000",
+    badge: "Most Comprehensive",
+    icon: <Code className="text-amber-500" />
+  },
+  {
+    title: "Placement Ready DSA",
+    subtitle: "Topic & Pattern Wise 100+ Qs",
+    img: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80",
+    duration: "3 Months | Patterns focused",
+    topics: ["Sliding Window", "Recursion", "DP Patterns", "Graphs", "Mock Int."],
+    oldPrice: "₹12,000",
+    newPrice: "₹5,000",
+    badge: "FAANG Oriented",
+    icon: <Zap className="text-blue-500" />
+  },
+  {
+    title: "MERN Stack Bootcamp",
+    img: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=800&q=80",
+    duration: "4 Months | Real Projects",
+    topics: ["MongoDB", "Express", "React", "Node.js", "Docker"],
+    oldPrice: "₹25,000",
+    newPrice: "₹15,000",
+    badge: "Industry Favorite",
+    icon: <ShieldCheck className="text-green-500" />
+  },
+  {
+    title: "Python Full Stack",
+    img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
+    duration: "6 Months | Data Focused",
+    topics: ["Python", "Django", "PostgreSQL", "React", "Deployment"],
+    oldPrice: "₹30,000",
+    newPrice: "₹15,000",
+    badge: "Modern Tech",
+    icon: <Code className="text-purple-500" />
+  },
+  {
+    title: "Programming Essentials",
+    subtitle: "Any Language Mastery",
+    img: "https://images.unsplash.com/photo-1516116216624-5ed584c7a9c1?auto=format&fit=crop&w=800&q=80",
+    duration: "1 Month | Foundation",
+    topics: ["C++", "Java", "Python", "Logic Building", "Syntax"],
+    oldPrice: "₹5,000",
+    newPrice: "₹2,500",
+    badge: "Beginner Friendly",
+    icon: <Zap className="text-orange-500" />
+  }
+];
 
 const Courses = () => {
-  const courses = [
-    {
-      title: "Java Full Stack",
-      target: "For Final Year Students",
-      targetIcon: <Target size={14} />,
-      duration: "6 Months",
-      skills: ["Core Java", "Spring Boot", "Hibernate", "React/Angular", "MySQL", "AWS Basics"],
-      gradient: "from-blue-600 to-primary-dark",
-      shadow: "shadow-blue-900/40",
-      featured: true
-    },
-    {
-      title: "Python Full Stack",
-      target: "For Second Year Students",
-      targetIcon: <Target size={14} />,
-      duration: "5 Months",
-      skills: ["Python", "Django/Flask", "REST APIs", "JavaScript", "HTML/CSS", "PostgreSQL"],
-      gradient: "from-emerald-500 to-teal-800",
-      shadow: "shadow-emerald-900/30",
-      featured: false
-    },
-    {
-      title: ".NET Full Stack",
-      target: "Professionals & Grads",
-      targetIcon: <Target size={14} />,
-      duration: "6 Months",
-      skills: ["C#", "ASP.NET Core", "Entity Framework", "Web APIs", "SQL Server", "Azure Basics"],
-      gradient: "from-purple-600 to-indigo-900",
-      shadow: "shadow-purple-900/30",
-      featured: false
-    },
-    {
-      title: "Core Programming",
-      target: "For Beginners",
-      targetIcon: <Target size={14} />,
-      duration: "3 Months",
-      skills: ["C Programming", "C++", "Core Java", "Python Basics", "Data Structures", "Algorithms"],
-      gradient: "from-orange-500 to-red-700",
-      shadow: "shadow-orange-900/30",
-      featured: false
-    }
-  ];
-
   return (
-    <section id="courses" className="py-24 bg-slate-900 relative overflow-hidden">
-      {/* Dark theme background elements */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] mix-blend-screen pointer-events-none"></div>
-        <div className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-accent/10 rounded-full blur-[120px] mix-blend-screen pointer-events-none"></div>
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')]"></div>
-      </div>
-
-      <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-          <div className="max-w-2xl">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="inline-block px-4 py-1.5 rounded-full glass-dark text-secondary font-semibold text-sm tracking-wide uppercase mb-6"
-            >
-              Expert Curriculum
-            </motion.div>
-            <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6">
-              Our <span className="text-gradient">Premium</span> Courses
-            </h3>
-            <p className="text-xl text-slate-300 font-medium leading-relaxed">
-              Comprehensive, meticulously crafted learning paths designed to catapult you from an enthusiast to a highly employable professional.
-            </p>
-          </div>
-          <Link
-            to="contact"
-            smooth={true}
-            offset={-100}
-            duration={800}
-            className="hidden md:flex items-center gap-3 px-6 py-3 rounded-xl glass-dark text-white hover:bg-white/10 font-bold transition-colors cursor-pointer group border border-white/10"
-          >
-            Request Syllabus <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
+    <section id="courses" className="section-padding bg-[#020617]">
+      <div className="container mx-auto px-6">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+            <span className="text-amber-500 font-bold uppercase tracking-[0.3em] text-xs block mb-4">Elite Learning</span>
+            <h2 className="text-4xl md:text-6xl mb-6">Our Ongoing <span className="gradient-text">Premium Courses</span></h2>
+            <p className="text-slate-400 font-medium">Industry-vetted curriculums designed to take you from a learner to a high-impact professional.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 xl:gap-6">
-          {courses.map((course, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {courses.map((course, i) => (
+            <motion.div 
+              key={i} 
+              className="glass-card !p-0 group overflow-hidden flex flex-col h-full border-white/5 hover:border-amber-500/30 transition-all duration-500"
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-              className={`group relative flex flex-col h-full rounded-[2rem] overflow-hidden ${course.featured ? 'border border-primary-light shadow-2xl ' + course.shadow : 'border border-slate-700 shadow-xl shadow-black/50'}`}
+              transition={{ delay: i * 0.1 }}
             >
-              {course.featured && (
-                <div className="absolute top-0 right-0 bg-primary-light text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl z-20 flex items-center gap-1 shadow-lg shadow-primary-light/40">
-                  <Zap size={14} /> Most Popular
-                </div>
-              )}
-              
-              {/* Card Header */}
-              <div className={`p-8 pb-12 text-white bg-gradient-to-br ${course.gradient} relative overflow-hidden`}>
-                <div className="absolute top-[-20%] right-[-10%] opacity-15 transform rotate-12 group-hover:rotate-45 transition-transform duration-700">
-                  <Code size={160} />
-                </div>
-                <div className="relative z-10">
-                  <div className="flex items-center gap-2 text-white/80 font-semibold text-xs uppercase tracking-wider mb-3">
-                    {course.targetIcon} {course.target}
-                  </div>
-                  <h4 className="text-3xl font-black mb-2 leading-tight">{course.title}</h4>
+              <div className="relative h-64 overflow-hidden">
+                <img 
+                    src={course.img} 
+                    alt={course.title} 
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" 
+                />
+                <div className="absolute top-6 left-6 px-4 py-1 bg-amber-500 rounded-full text-[10px] font-black text-black tracking-widest uppercase">
+                    {course.badge}
                 </div>
               </div>
 
-              {/* Card Body */}
-              <div className="p-8 flex-grow flex flex-col bg-slate-800 relative z-10 -mt-6 rounded-t-3xl border-t border-white/10">
-                <div className="flex items-center gap-3 text-white font-bold mb-8 pb-6 border-b border-slate-700">
-                  <div className="bg-slate-700 p-2 rounded-lg text-secondary">
-                    <Clock size={20} />
+              <div className="p-8 flex flex-col flex-grow">
+                <div className="flex items-center gap-4 text-[10px] font-black text-slate-500 uppercase tracking-widest mb-6">
+                  <div className="flex items-center gap-2">
+                    <Clock size={14} className="text-amber-500" /> {course.duration.split('|')[0]}
                   </div>
-                  Duration: {course.duration}
+                  <div className="flex items-center gap-2">
+                    <Globe size={14} className="text-blue-500" /> Hybrid Mode
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                    <h3 className="text-2xl text-white tracking-tight font-black mb-2 group-hover:text-amber-500 transition-colors">{course.title}</h3>
+                    {course.subtitle && <p className="text-amber-500/70 text-xs font-bold uppercase tracking-widest">{course.subtitle}</p>}
                 </div>
                 
-                <h5 className="font-bold text-slate-400 mb-5 uppercase text-xs tracking-wider">Master Skills</h5>
-                <ul className="space-y-4 mb-10 flex-grow">
-                  {course.skills.map((skill, idx) => (
-                    <li key={idx} className="flex items-center gap-3">
-                      <div className="bg-emerald-500/10 p-1 rounded-full shrink-0">
-                        <CheckCircle2 size={16} className="text-emerald-400" />
-                      </div>
-                      <span className="text-slate-200 font-medium">{skill}</span>
-                    </li>
+                <div className="flex flex-wrap gap-2 mb-10">
+                  {course.topics.map(topic => (
+                    <span key={topic} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[9px] font-bold text-slate-400 uppercase tracking-widest">
+                      {topic}
+                    </span>
                   ))}
-                </ul>
+                </div>
 
-                <Link
-                  to="contact"
-                  smooth={true}
-                  offset={-100}
-                  duration={800}
-                  className={`w-full py-4 rounded-xl font-bold text-center transition-all duration-300 cursor-pointer shadow-lg hover:-translate-y-1 ${course.featured ? 'bg-primary-light text-white hover:bg-secondary ' + course.shadow : 'bg-slate-700 text-white hover:bg-slate-600 shadow-none'}`}
-                >
-                  Join the Batch
-                </Link>
+                <div className="mt-auto flex items-center justify-between pt-8 border-t border-white/5">
+                  <div>
+                    <div className="text-slate-500 text-[10px] font-black uppercase tracking-widest line-through mb-1">{course.oldPrice || '₹' + (parseInt(course.newPrice.replace('₹','').replace(',','')) * 2).toLocaleString()}</div>
+                    <div className="text-3xl text-white font-black">{course.newPrice}</div>
+                  </div>
+                  <button className="btn btn-primary !px-6 !py-3 !text-[10px] group/btn">
+                    ENROLL NOW
+                    <ArrowRight size={14} className="ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                  </button>
+                </div>
               </div>
             </motion.div>
           ))}
