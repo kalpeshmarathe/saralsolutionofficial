@@ -1,17 +1,20 @@
 import React from 'react';
 import Hero from '../components/Hero';
-import DsaSheet from '../components/DsaSheet';
-import { WhyUs } from '../components/TrustSections';
+import Courses from '../components/Courses';
+import { WhyUs, Marquee } from '../components/TrustSections';
 import { HowItWorks, Faq } from '../components/InteractiveSections';
 import { Blog, CtaBanner } from '../components/FooterSections';
+import SocialProof from '../components/SocialProof';
 
 const Home = () => {
   return (
     <>
       <Hero />
-      <DsaSheet />
+      <Marquee />
+      <Courses />
       <WhyUs />
       <HowItWorks />
+      <SocialProof />
       <Faq />
       <Blog />
       <CtaBanner />

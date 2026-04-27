@@ -1,87 +1,220 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronDown, CheckCircle2 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { ChevronDown, CheckCircle2, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const HowItWorks = () => {
   const steps = [
-    { num: "01", title: "Choose Course", desc: "Select from our specialized FAANG-grade programs tailored for your goals." },
-    { num: "02", title: "Attend Demo", desc: "Experience our high-energy teaching methodology with a live interactive demo." },
-    { num: "03", title: "Learn & Build", desc: "Intensive training with daily classes, doubt sessions, and real-world projects." },
-    { num: "04", title: "Get Placed", desc: "Unlock premium referrals and master your interviews with our placement cell." },
+    {
+      num: '01',
+      emoji: '🎯',
+      title: 'Pick Your Goal',
+      desc: 'Choose a course that matches your ambition — from beginner to advanced. Our counselors help you decide.',
+      color: '#f5a623',
+    },
+    {
+      num: '02',
+      emoji: '🧑‍🏫',
+      title: 'Attend a Free Demo',
+      desc: 'Experience our teaching live. See the classroom, meet the mentor, and feel the energy before committing.',
+      color: '#3b82f6',
+    },
+    {
+      num: '03',
+      emoji: '🔥',
+      title: 'Learn & Build Daily',
+      desc: 'Daily live sessions, doubt clearing, real projects, and streak-based learning that keeps you motivated.',
+      color: '#22c55e',
+    },
+    {
+      num: '04',
+      emoji: '🚀',
+      title: 'Get Placed',
+      desc: 'Our dedicated placement cell connects you to top companies with resume prep, mock interviews & referrals.',
+      color: '#a855f7',
+    },
   ];
-  return (
-    <section id="how-it-works" className="section-padding bg-slate-950 relative overflow-hidden">
-      {/* Decorative lines */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-amber-500 to-transparent"></div>
-        <div className="absolute top-0 left-2/4 w-px h-full bg-gradient-to-b from-transparent via-slate-500 to-transparent"></div>
-        <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-amber-500 to-transparent"></div>
-      </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+  return (
+    <section id="how-it-works" className="section-padding relative overflow-hidden"
+      style={{ background: 'linear-gradient(180deg, #060d1c 0%, #030712 100%)' }}
+    >
+      {/* Grid bg */}
+      <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
+
+      <div className="container-xl relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <span className="text-amber-500 font-bold uppercase tracking-[0.3em] text-xs block mb-4">Our Methodology</span>
-          <h2 className="text-4xl md:text-6xl mb-6">A Structured Path to <br /><span className="gradient-text">Engineering Mastery</span></h2>
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            className="flex justify-center mb-5">
+            <span className="section-label">📍 The Journey</span>
+          </motion.div>
+          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            transition={{ delay: 0.1 }} className="text-4xl md:text-5xl font-black mb-4">
+            Your Path from <span className="gradient-text">Zero to Placed</span>
+          </motion.h2>
+          <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+            transition={{ delay: 0.2 }} className="text-slate-400 text-lg">
+            A proven 4-step framework that has launched hundreds of careers.
+          </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((s, i) => (
-            <div key={i} className="relative group">
-              <div className="text-8xl font-display font-black text-white opacity-5 absolute -top-10 -left-4 group-hover:opacity-10 transition-opacity">
-                {s.num}
-              </div>
-              <div className="pt-10">
-                <CheckCircle2 className="text-amber-500 mb-6" size={32} />
-                <h4 className="text-2xl mb-4 text-white group-hover:text-amber-500 transition-colors">{s.title}</h4>
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              className="relative"
+            >
+              {/* Connector line */}
+              {i < steps.length - 1 && (
+                <div className="hidden lg:block absolute top-12 left-full w-full h-px z-0"
+                  style={{ background: `linear-gradient(90deg, ${s.color}40, transparent)`, transform: 'translateX(-50%)' }} />
+              )}
+
+              <div className="feature-card relative z-10 h-full">
+                {/* Step number */}
+                <div className="text-7xl font-black font-mono absolute top-4 right-5 opacity-[0.06] select-none pointer-events-none"
+                  style={{ color: s.color }}>
+                  {s.num}
+                </div>
+
+                {/* Icon circle */}
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-6 relative z-10"
+                  style={{ background: `${s.color}15`, border: `1px solid ${s.color}25` }}>
+                  {s.emoji}
+                </div>
+
+                {/* Step indicator */}
+                <div className="text-xs font-black uppercase tracking-widest mb-3 flex items-center gap-2"
+                  style={{ color: s.color }}>
+                  <span className="w-4 h-0.5 rounded" style={{ background: s.color }} />
+                  Step {s.num}
+                </div>
+
+                <h4 className="text-xl font-black text-white mb-3">{s.title}</h4>
                 <p className="text-slate-400 text-sm leading-relaxed">{s.desc}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
+
+        {/* CTA */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          className="flex justify-center mt-16">
+          <Link to="/contact">
+            <button className="btn btn-primary group">
+              Start Your Journey Today
+              <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
 };
 
+const faqs = [
+  {
+    q: "Is this suitable for absolute beginners with no coding experience?",
+    a: "Absolutely! Our Programming Essentials course starts from scratch — no prior experience needed. We cover logic building, syntax, and problem-solving fundamentals before moving to advanced topics.",
+  },
+  {
+    q: "Do you offer offline classes in Jalgaon?",
+    a: "Yes! We are based in Jalgaon, Maharashtra, and offer high-quality offline classes at our centre. We also provide a hybrid model so you never miss a class.",
+  },
+  {
+    q: "What kind of placement support will I get?",
+    a: "Our dedicated placement cell offers resume building, mock interviews with industry mentors, and direct referrals to our hiring partner network.",
+  },
+  {
+    q: "Can I attend a free demo class before enrolling?",
+    a: "Yes, we always recommend attending a free demo session first. It's the best way to experience our teaching style and connect with our mentors.",
+  },
+  {
+    q: "Are the courses available online too?",
+    a: "Yes, we offer both offline and online (live) modes. All sessions are recorded so you can revise anytime. You choose what works best for you.",
+  },
+  {
+    q: "What is the EMI or payment option available?",
+    a: "We offer flexible payment options including EMI plans. Our counselors will help you find the best payment structure based on your situation.",
+  },
+];
+
 const Faq = () => {
   const [active, setActive] = useState(null);
-  const faqs = [
-    { q: "Is this course for absolute beginners?", a: "Yes, our programs are architected to take you from absolute zero to advanced system architecture. We cover everything from syntax to scale." },
-    { q: "Do you provide offline classes in Delhi?", a: "Absolutely. We have high-tech offline centers in Laxmi Nagar and Noida designed for collaborative learning." },
-    { q: "What kind of placement support do I get?", a: "We provide complete placement support including resume workshops, mock interviews with FAANG mentors, and referrals to our network of partner firms." },
-    { q: "Can I switch between online and offline?", a: "Yes, we offer a hybrid model that allows you to attend classes as per your convenience without missing any lectures." }
-  ];
-  return (
-    <section id="faq" className="section-padding bg-slate-950">
-      <div className="container mx-auto px-6">
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <span className="text-amber-500 font-bold uppercase tracking-[0.3em] text-xs block mb-4">Support</span>
-          <h2 className="text-4xl md:text-5xl mb-6">Frequently Asked Questions</h2>
-        </div>
 
-        <div className="max-w-3xl mx-auto space-y-4">
-          {faqs.map((f, i) => (
-            <div key={i} className="border border-white/5 bg-white/[0.02] rounded-2xl overflow-hidden transition-all duration-300 hover:border-amber-500/30">
-              <button 
-                className="w-full flex items-center justify-between p-6 text-left" 
-                onClick={() => setActive(active === i ? null : i)}
-              >
-                <span className="text-lg font-bold text-white tracking-tight">{f.q}</span>
-                <div className={`p-2 rounded-full bg-white/5 transition-transform duration-300 ${active === i ? 'rotate-180 bg-amber-500 text-black' : 'text-slate-500'}`}>
-                  <ChevronDown size={20} />
-                </div>
-              </button>
-              <motion.div 
-                initial={false}
-                animate={{ height: active === i ? 'auto' : 0, opacity: active === i ? 1 : 0 }}
-                className="overflow-hidden"
-              >
-                <div className="p-6 pt-0 text-slate-400 leading-relaxed border-t border-white/5">
-                  {f.a}
-                </div>
-              </motion.div>
+  return (
+    <section id="faq" className="section-padding" style={{ background: '#030712' }}>
+      <div className="container-xl">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+
+          {/* Left */}
+          <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+            <span className="section-label mb-6 inline-flex">❓ FAQs</span>
+            <h2 className="text-4xl md:text-5xl font-black mb-5">
+              Common Questions,<br /><span className="gradient-text">Honest Answers</span>
+            </h2>
+            <p className="text-slate-400 text-lg leading-relaxed mb-10">
+              We believe in full transparency. Here are the questions students ask us most.
+            </p>
+
+            {/* Contact CTA card */}
+            <div className="rounded-2xl p-6"
+              style={{ background: 'linear-gradient(135deg, rgba(245,166,35,0.08), rgba(245,166,35,0.02))', border: '1px solid rgba(245,166,35,0.15)' }}>
+              <p className="text-white font-bold mb-1">Still have questions?</p>
+              <p className="text-slate-400 text-sm mb-4">Talk directly to our counselors — we reply within 2 hours.</p>
+              <Link to="/contact">
+                <button className="btn btn-primary text-sm !px-5 !py-3 group">
+                  Chat With Us
+                  <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+                </button>
+              </Link>
             </div>
-          ))}
+          </motion.div>
+
+          {/* Right — accordion */}
+          <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
+            className="space-y-3">
+            {faqs.map((f, i) => (
+              <div key={i}
+                className="rounded-2xl overflow-hidden transition-all duration-300"
+                style={{
+                  background: active === i ? 'rgba(15,23,42,0.8)' : 'rgba(255,255,255,0.02)',
+                  border: `1px solid ${active === i ? 'rgba(245,166,35,0.25)' : 'rgba(255,255,255,0.05)'}`,
+                }}
+              >
+                <button
+                  className="w-full flex items-center justify-between p-5 text-left gap-4"
+                  onClick={() => setActive(active === i ? null : i)}
+                >
+                  <span className="font-bold text-white text-base leading-snug">{f.q}</span>
+                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${active === i ? 'bg-amber-500 text-black' : 'bg-white/5 text-slate-400'}`}>
+                    <ChevronDown size={16} className={`transition-transform duration-300 ${active === i ? 'rotate-180' : ''}`} />
+                  </div>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {active === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-5 border-t text-slate-400 leading-relaxed text-sm pt-4"
+                        style={{ borderColor: 'rgba(255,255,255,0.05)' }}>
+                        {f.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

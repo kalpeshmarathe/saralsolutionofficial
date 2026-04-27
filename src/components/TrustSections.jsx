@@ -1,62 +1,108 @@
 import React from 'react';
-import { ShieldCheck, MonitorPlay, Zap, Code, Briefcase, Users, Cpu, Trophy } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { MonitorPlay, Zap, Code, Briefcase, Cpu, Trophy, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-const Marquee = () => {
-  const brands = ["Google", "Amazon", "Microsoft", "Flipkart", "Uber", "Adobe", "Meta", "Netflix", "Apple", "Goldman Sachs"];
-  return (
-    <div className="py-12 bg-slate-950 border-y border-white/5 overflow-hidden relative">
-      <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-slate-950 to-transparent z-10"></div>
-      <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-slate-950 to-transparent z-10"></div>
-      
-      <div className="flex animate-marquee whitespace-nowrap">
-        {[...brands, ...brands].map((brand, i) => (
-          <div key={i} className="flex items-center gap-3 px-12 text-slate-500 font-display font-black text-2xl tracking-tighter hover:text-amber-500 transition-colors cursor-default grayscale hover:grayscale-0">
-            <div className="w-2 h-2 rounded-full bg-amber-500/30"></div>
-            {brand}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+const features = [
+  {
+    icon: <MonitorPlay size={28} />,
+    title: 'Offline + Online',
+    desc: 'High-energy classroom in Jalgaon. Also attend from home via live streaming with session recordings.',
+    color: '#3b82f6',
+    emoji: '🖥️',
+  },
+  {
+    icon: <Zap size={28} />,
+    title: 'Daily Live Classes',
+    desc: 'No pre-recorded content only. Every session is live with interactive doubt-solving in real time.',
+    color: '#f5a623',
+    emoji: '⚡',
+  },
+  {
+    icon: <Code size={28} />,
+    title: 'FAANG-Grade Curriculum',
+    desc: 'Our syllabus is built by engineers from top product companies, updated every quarter.',
+    color: '#22c55e',
+    emoji: '🧑‍💻',
+  },
+  {
+    icon: <Briefcase size={28} />,
+    title: 'Placement Cell',
+    desc: 'Dedicated corporate relations team for referrals, resume reviews & mock interviews.',
+    color: '#a855f7',
+    emoji: '💼',
+  },
+  {
+    icon: <Cpu size={28} />,
+    title: 'System Design',
+    desc: 'HLD & LLD mastery that separates SDE-1 from SDE-2. Crucial for senior roles.',
+    color: '#ef4444',
+    emoji: '🏗️',
+  },
+  {
+    icon: <Trophy size={28} />,
+    title: 'Streak & Gamification',
+    desc: 'Stay motivated with daily streaks, XP points, leaderboards, and achievement badges.',
+    color: '#f5a623',
+    emoji: '🏆',
+  },
+];
 
 const WhyUs = () => {
-  const features = [
-    { icon: <MonitorPlay size={32} />, title: "Offline experience", desc: "Learn in a high-energy classroom environment with zero distractions.", color: "text-blue-500" },
-    { icon: <Zap size={32} />, title: "Live + Recorded", desc: "Never miss a single class with our dual-mode learning technology.", color: "text-amber-500" },
-    { icon: <Code size={32} />, title: "FAANG Curriculum", desc: "Our syllabus is architected by engineers from top tier product firms.", color: "text-green-500" },
-    { icon: <Briefcase size={32} />, title: "Placements", desc: "Dedicated corporate cell for direct referrals & mock interview prep.", color: "text-purple-500" },
-    { icon: <Cpu size={32} />, title: "System Design", desc: "Master HLD and LLD concepts that matter for senior roles.", color: "text-red-500" },
-    { icon: <Trophy size={32} />, title: "Industry Mentors", desc: "Get mentored by engineering leads from top-tier technology firms.", color: "text-orange-500" },
-  ];
-
   return (
-    <section id="why-us" className="section-padding bg-[#020617] relative">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
-          <div className="max-w-2xl">
-            <span className="text-amber-500 font-bold uppercase tracking-[0.3em] text-xs block mb-4">The Saral Advantage</span>
-            <h2 className="text-4xl md:text-6xl mb-6">Why Professionals <br />Choose <span className="gradient-text">Saral Solutions</span></h2>
+    <section id="why-us" className="section-padding relative overflow-hidden"
+      style={{ background: 'linear-gradient(180deg, #030712 0%, #060d1c 50%, #030712 100%)' }}>
+
+      {/* Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full pointer-events-none opacity-20"
+        style={{ background: 'radial-gradient(ellipse, rgba(245,166,35,0.15) 0%, transparent 70%)' }} />
+
+      <div className="container-xl relative z-10">
+        {/* Header */}
+        <div className="grid lg:grid-cols-2 gap-12 items-end mb-20">
+          <div>
+            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              className="mb-5">
+              <span className="section-label">⚡ Why Saral</span>
+            </motion.div>
+            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              transition={{ delay: 0.1 }} className="text-4xl md:text-5xl lg:text-6xl font-black">
+              Built for Students,<br /><span className="gradient-text">Not Just Credentials</span>
+            </motion.h2>
           </div>
-          <p className="text-slate-400 max-w-sm mb-2">We provide an ecosystem that doesn't just teach technology—it breeds excellence and engineering discipline.</p>
+          <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            transition={{ delay: 0.2 }} className="text-slate-400 text-lg leading-relaxed">
+            We obsess over student outcomes — not just teaching. Every feature, session, and interaction is designed
+            to maximise your learning speed and confidence.
+          </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Feature grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((f, i) => (
-            <motion.div 
-              key={i} 
-              className="glass-card group"
-              initial={{ opacity: 0, y: 20 }}
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
               viewport={{ once: true }}
+              transition={{ delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              className="feature-card group"
             >
-              <div className={`${f.color} mb-8 transform group-hover:scale-110 transition-transform duration-500`}>
+              {/* Glow on hover */}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: `radial-gradient(circle at top left, ${f.color}08 0%, transparent 60%)` }} />
+
+              {/* Icon */}
+              <div className="relative z-10 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110"
+                style={{ background: `${f.color}12`, border: `1px solid ${f.color}20`, color: f.color }}>
                 {f.icon}
               </div>
-              <h3 className="text-xl font-black text-white mb-4 tracking-tight group-hover:text-amber-500 transition-colors">{f.title}</h3>
-              <p className="text-slate-400 leading-relaxed text-sm">{f.desc}</p>
+
+              {/* Text */}
+              <h4 className="text-xl font-black text-white mb-3 relative z-10 group-hover:text-amber-300 transition-colors">
+                {f.emoji} {f.title}
+              </h4>
+              <p className="text-slate-400 leading-relaxed text-sm relative z-10">{f.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -65,4 +111,24 @@ const WhyUs = () => {
   );
 };
 
-export { Marquee, WhyUs };
+const Marquee = () => {
+  const brands = ["Google", "Amazon", "Microsoft", "Flipkart", "Uber", "Adobe", "Meta", "Netflix", "Apple", "Goldman Sachs", "Infosys", "TCS"];
+  return (
+    <div className="py-10 border-y overflow-hidden relative" style={{ borderColor: 'rgba(255,255,255,0.04)', background: 'rgba(255,255,255,0.01)' }}>
+      <div className="absolute inset-y-0 left-0 w-32 pointer-events-none z-10"
+        style={{ background: 'linear-gradient(90deg, #030712, transparent)' }} />
+      <div className="absolute inset-y-0 right-0 w-32 pointer-events-none z-10"
+        style={{ background: 'linear-gradient(-90deg, #030712, transparent)' }} />
+      <div className="animate-marquee flex gap-0 whitespace-nowrap">
+        {[...brands, ...brands, ...brands].map((brand, i) => (
+          <span key={i} className="inline-flex items-center gap-3 px-10 text-slate-600 text-sm font-bold uppercase tracking-wider hover:text-amber-500 transition-colors cursor-default">
+            <span className="w-1 h-1 rounded-full bg-amber-500/40" />
+            {brand}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export { WhyUs, Marquee };

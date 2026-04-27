@@ -227,52 +227,63 @@ const DsaSheet = () => {
     const progress = Math.round((solvedCount / totalQuestions) * 100) || 0;
 
     return (
-        <section id="dsa-sheet" className="section-padding bg-[#020617]">
-            <div className="container mx-auto px-6">
+        <section id="dsa-sheet" className="section-padding bg-[#030712]">
+            <div className="container-xl">
                 <div className="text-center max-w-3xl mx-auto mb-20">
-                    <span className="text-amber-500 font-bold uppercase tracking-[0.3em] text-xs block mb-4">Master Every Pattern</span>
-                    <h2 className="text-4xl md:text-6xl mb-6">Complete <span className="gradient-text">150+ DSA Sheet</span></h2>
-                    <p className="text-slate-400 font-medium">Curated from FAANG interviews. 13 topics, Basic to Advanced. Your one-stop shop for placement prep.</p>
+                    <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                      <span className="section-label mb-5 inline-flex">Master Every Pattern</span>
+                    </motion.div>
+                    <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                      className="text-4xl md:text-6xl mb-6 font-black uppercase tracking-tighter">
+                      Complete <span className="gradient-text">150+ DSA Sheet</span>
+                    </motion.h2>
+                    <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+                      className="text-slate-400 font-medium text-lg">
+                      Curated from FAANG interviews. 13 topics, Basic to Advanced. Your one-stop shop for placement prep.
+                    </motion.p>
                 </div>
 
                 {/* Dashboard Stats */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-                    <div className="glass-card !p-8 flex items-center gap-6 group hover:border-amber-500/50 transition-all">
-                        <div className="w-16 h-16 rounded-2xl bg-amber-500/10 flex items-center justify-center text-amber-500">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                      className="glass-card !p-8 flex items-center gap-6 group hover:border-amber-500/50 transition-all">
+                        <div className="w-16 h-16 rounded-2xl bg-amber-500/10 flex items-center justify-center text-amber-500 border border-amber-500/20">
                             <Trophy size={32} />
                         </div>
                         <div>
-                            <div className="text-slate-500 text-xs font-black uppercase tracking-widest mb-1">Total Mastery</div>
+                            <div className="text-slate-500 text-[10px] font-black uppercase tracking-widest mb-1">Total Mastery</div>
                             <div className="text-3xl font-black text-white">{solvedCount} / {totalQuestions}</div>
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="glass-card !p-8 flex items-center gap-6 group hover:border-blue-500/50 transition-all">
-                        <div className="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
+                      className="glass-card !p-8 flex items-center gap-6 group hover:border-amber-500/50 transition-all">
+                        <div className="w-16 h-16 rounded-2xl bg-amber-500/10 flex items-center justify-center text-amber-400 border border-amber-500/20">
                             <Target size={32} />
                         </div>
                         <div>
-                            <div className="text-slate-500 text-xs font-black uppercase tracking-widest mb-1">Roadmap Progress</div>
+                            <div className="text-slate-500 text-[10px] font-black uppercase tracking-widest mb-1">Roadmap Progress</div>
                             <div className="text-3xl font-black text-white">{progress}%</div>
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="glass-card !p-8 flex items-center gap-6 group hover:border-green-500/50 transition-all">
-                        <div className="w-16 h-16 rounded-2xl bg-green-500/10 flex items-center justify-center text-green-500">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
+                      className="glass-card !p-8 flex items-center gap-6 group hover:border-amber-500/50 transition-all">
+                        <div className="w-16 h-16 rounded-2xl bg-amber-500/10 flex items-center justify-center text-amber-300 border border-amber-500/20">
                             <Zap size={32} />
                         </div>
                         <div>
-                            <div className="text-slate-500 text-xs font-black uppercase tracking-widest mb-1">Elite Rating</div>
+                            <div className="text-slate-500 text-[10px] font-black uppercase tracking-widest mb-1">Elite Rating</div>
                             <div className="text-3xl font-black text-white">{progress > 80 ? 'DIAMOND' : progress > 50 ? 'GOLD' : 'SILVER'}</div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
 
                 {/* Main Dashboard Area */}
                 <div className="grid lg:grid-cols-12 gap-8">
                     {/* Sidebar Tabs */}
                     <div className="lg:col-span-3 space-y-2 h-fit lg:sticky lg:top-32">
-                        <div className="text-xs font-black text-slate-500 uppercase tracking-widest mb-6 px-4">Topics Navigation</div>
+                        <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-6 px-4">Topics Navigation</div>
                         <div className="max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar space-y-2">
                             {topics.map(t => {
                                 const topicQs = dsaTopicData[t.id] || [];
@@ -283,7 +294,7 @@ const DsaSheet = () => {
                                     <button 
                                         key={t.id}
                                         onClick={() => setActiveTopic(t.id)}
-                                        className={`w-full flex flex-col p-4 rounded-2xl transition-all duration-300 text-left border ${activeTopic === t.id ? 'bg-amber-500 border-amber-500 text-black' : 'bg-white/5 border-white/5 text-slate-400 hover:bg-white/10'}`}
+                                        className={`w-full flex flex-col p-4 rounded-2xl transition-all duration-300 text-left border ${activeTopic === t.id ? 'bg-amber-500 border-amber-500 text-black shadow-lg shadow-amber-500/20' : 'bg-white/5 border-white/5 text-slate-400 hover:bg-white/10'}`}
                                     >
                                         <div className="flex justify-between items-center mb-2">
                                             <span className="font-bold text-xs uppercase tracking-tighter">{t.name}</span>
@@ -306,14 +317,14 @@ const DsaSheet = () => {
                         <div className="glass-card !p-0 overflow-hidden border-white/5">
                             <div className="bg-white/5 px-8 py-6 flex justify-between items-center border-b border-white/5">
                                 <div>
-                                    <h3 className="text-2xl font-black text-white uppercase tracking-tighter mb-1">{topics.find(t => t.id === activeTopic)?.name}</h3>
+                                    <h3 className="text-2xl font-black text-white uppercase tracking-tighter mb-1 leading-tight">{topics.find(t => t.id === activeTopic)?.name}</h3>
                                     <div className="flex items-center gap-2 text-amber-500 font-bold uppercase tracking-widest text-[10px]">
                                         <ListTodo size={14} />
                                         Interactive Challenge List
                                     </div>
                                 </div>
                                 <div className="text-right">
-                                    <div className="text-[20px] font-black text-white leading-none">{(dsaTopicData[activeTopic] || []).filter(q => solvedIds.includes(q.id)).length} / {dsaTopicData[activeTopic]?.length || 0}</div>
+                                    <div className="text-2xl font-black text-white leading-none">{(dsaTopicData[activeTopic] || []).filter(q => solvedIds.includes(q.id)).length} / {dsaTopicData[activeTopic]?.length || 0}</div>
                                     <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest mt-1">Solved</div>
                                 </div>
                             </div>
@@ -360,7 +371,7 @@ const DsaSheet = () => {
                                                         href={q.link} 
                                                         target="_blank" 
                                                         rel="noopener noreferrer" 
-                                                        className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-amber-500 border border-amber-500/30 px-6 py-3 rounded-full hover:bg-amber-500 hover:text-black transition-all group/btn"
+                                                        className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-amber-500 border border-amber-500/30 px-6 py-3.5 rounded-full hover:bg-amber-500 hover:text-black transition-all group/btn"
                                                     >
                                                         Solve Challenge
                                                         <ExternalLink size={14} className="group-hover/btn:translate-x-1 transition-transform" />
